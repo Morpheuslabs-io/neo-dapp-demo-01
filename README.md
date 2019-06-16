@@ -1,4 +1,4 @@
-# An NEO Dapp demo
+# An NEO dApp demo
 
 This is a repository for a petshop Dapp demo which is running on NEO blockchain. The project itself does not contain any business purpose and is only used for learning. The project is utilizing following things :
 
@@ -14,23 +14,27 @@ Open information tab of blockchain ops and get two links:
 - `Internal P2P URL: http://bops-t.morpheuslabs.io:21660 (example)`
 6. Using editor like vim open and change file: `/home/user/.local/lib/python3.6/site-packages/neo/data/protocol.privnet.json`
 Update 2 parameters SeedList and RPCList (example): 
-`"SeedList": [
+```
+"SeedList": [
         "bops-t.morpheuslabs.io:21660" //using Internal P2P URL without http
 ],
 "RPCList": [
     "http://bops-t.morpheuslabs.io:33362" //using Internal RPC URL with full link
-]`
+]
+```
 
 7. Open terminal and enter command `np-prompt -p -v` to connnect to private net
 You should get something like this:
 
-`Privatenet useragent '/Neo:2.10.1/', nonce: 977855951
+```
+Privatenet useragent '/Neo:2.10.1/', nonce: 977855951
 [I 190616 15:25:54 LevelDBBlockchain:112] Created Blockchain DB at /home/user/.neopython/Chains/privnet
 [I 190616 15:25:55 NotificationDB:73] Created Notification DB At /home/user/.neopython/Chains/privnet_notif
 NEO cli. Type 'help' to get started
 
 
-neo>`
+neo>
+```
 
 It meant we connected to private net, wait little bit for neo-python node to sync, you can check syncing status by using command `show state`.
 
@@ -38,13 +42,13 @@ It meant we connected to private net, wait little bit for neo-python node to syn
 9. Import new address to wallet `neo> wallet import wif KxDgvEKzgSBPPfuVfw67oPQBSjidEiqTHURKSDL1R7yGaGYAeYnr`
 10. Rebuild wallet after import `neo> wallet rebuild`
 11. Check NEO and GAS in wallet `neo> wallet` focus to check `percent_synced` and `synced_balances`
-`
+```
     "percent_synced": 100,
     "synced_balances": [
         "[NEO]: 100000000.0 ",
         "[NEOGas]: 30525.98755 "
     ],
-`
+```
 Wallet need to have NEO and GAS to able deploy contract. Next we start to compile and deploy NEP contract to private network.
 
 ## Deploy contract on private net
@@ -57,7 +61,8 @@ And Enter Contract Information detail to deploy.
 example: `neo> sc deploy /projects/neo-dapp-demo-01/smart-contract/NEP.avm True False False 0701 05 --fee=550`
 3. When finish to deploy wait little and view detail contract to get contract address to config on FrontEnd
 Example:
-`Creating smart contract....
+```
+Creating smart contract....
                  Name: PETToken
               Version: V1
                Author: Neo
@@ -68,14 +73,15 @@ Example:
            Is Payable: False
 {
     "hash": "0xb6730fd741b632401f89020409c6c0415d97dcee", //script hash of contract 
-    "script": "011ac56b6a00527ac46a51527ac4586a52527ac4074e4744205045546a53527ac4034e50546a54527ac46a00c30b746f74616c537570706c79876406006c7566616a00c3046e616d65876409006a53c36c7566616a00c30673796d626f6c8764...`
+    "script": "011ac56b6a00527ac46a51527ac4586a52527ac4074e4744205045546a53527ac4034e50546a54527ac46a00c30b746f74616c537570706c79876406006c7566616a00c3046e616d65876409006a53c36c7566616a00c30673796d626f6c8764...
+```
 
-##. Configuration Front End dApp
+## Config Front End dApp
 ---------------------------------
 1. Get address of contract `neo> show contract {contract script hash}`
 Example: `neo> show contract 0xb6730fd741b632401f89020409c6c0415d97dcee`
 Output: 
-`
+```
 {
     "version": 0,
     "hash": "0xb6730fd741b632401f89020409c6c0415d97dcee",
@@ -104,6 +110,7 @@ Output:
     }
 }
 `
+```
 2. Update config file, open neon.js file in src folder and update contract address, contract hash, scan url, RPC url
 Example: 
 ```javascript
