@@ -2,7 +2,7 @@
 
 This is a repository for a petshop Dapp demo which is running on NEO blockchain. The project itself does not contain any business purpose and is only used for learning. The project is utilizing following things :
 
-# Create a private NEO blockchain ops
+## Setup Env
 ---------------------------------
 1. Create private net on blockchain ops
 2. Create NEO stack workspace
@@ -45,14 +45,76 @@ It meant we connected to private net, wait little bit for neo-python node to syn
         "[NEOGas]: 30525.98755 "
     ],
 `
-Wallet need to have NEO and GAS to able deploy contract
+Wallet need to have NEO and GAS to able deploy contract. Next we start to compile and deploy NEP contract to private network.
 
-
-
-
-1. Deploy contract on private net
+## Deploy contract on private net
 ---------------------------------
 
+1. To build contract use command `neo> sc build {path to python file}` example:
+`neo> sc build /projects/neo-dapp-demo-01/smart-contract/NEP.py`
+2. To deploy contract use command `neo>sc deploy {path to .avm file} True False False 0701 05 --fee={fee}`
+And Enter Contract Information detail to deploy.
+example: `neo> sc deploy /projects/neo-dapp-demo-01/smart-contract/NEP.avm True False False 0701 05 --fee=550`
+3. When finish to deploy wait little and view detail contract to get contract address to config on FrontEnd
+Example:
+`Creating smart contract....
+                 Name: PETToken
+              Version: V1
+               Author: Neo
+                Email: neo@test.com
+          Description: NEO PET Token dApp Demo
+        Needs Storage: True
+ Needs Dynamic Invoke: False
+           Is Payable: False
+{
+    "hash": "0xb6730fd741b632401f89020409c6c0415d97dcee", //script hash of contract 
+    "script": "011ac56b6a00527ac46a51527ac4586a52527ac4074e4744205045546a53527ac4034e50546a54527ac46a00c30b746f74616c537570706c79876406006c7566616a00c3046e616d65876409006a53c36c7566616a00c30673796d626f6c8764...`
 
-2. Configuration Front End dApp
+##. Configuration Front End dApp
 ---------------------------------
+1. Get address of contract `neo> show contract {contract script hash}`
+Example: `neo> show contract 0xb6730fd741b632401f89020409c6c0415d97dcee`
+Output: 
+`
+{
+    "version": 0,
+    "hash": "0xb6730fd741b632401f89020409c6c0415d97dcee",
+    "script": "011ac56b6a00527ac46a51527ac4586a52527ac4074e4744205045546a535...",
+    "parameters": [
+        "String",
+        "Boolean"
+    ],
+    "returntype": "ByteArray",
+    "name": "NeoToken",
+    "code_version": "V1",
+    "author": "Neo",
+    "email": "test",
+    "description": "Neo Demo Token",
+    "properties": {
+        "storage": true,
+        "dynamic_invoke": false,
+        "payable": false
+    },
+    "token": {
+        "name": "NGD PET",
+        "symbol": "NPT",
+        "decimals": 8,
+        "script_hash": "0xb6730fd741b632401f89020409c6c0415d97dcee",
+        "contract_address": "AdYrj6yhqL8EWPKmK5hgcJydthchFTpGsf" //--> smart contract address
+    }
+}
+`
+2. Update config file, open neon.js file in src folder and update contract address, contract hash, scan url, RPC url
+Example: 
+```javascript
+const NEO_SCAN_URL = "https://neoscan-testnet.io/api/main_net";
+const PRIV_RPC_NODE = "http://192.168.99.100:30333";
+const CONTRACT_ADDRESS = 'AdYrj6yhqL8EWPKmK5hgcJydthchFTpGsf';
+const CONTRACT_SCRIPTHASH = 'b6730fd741b632401f89020409c6c0415d97dcee';
+const AMOUNT_OF_NEO_TO_BUY_ONE_VOUCHER = 0.1;
+```
+
+3. Run `npm install` to install client node modules
+4. Run `node index.js` to start dev server
+
+
