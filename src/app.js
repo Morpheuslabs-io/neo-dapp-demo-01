@@ -1,9 +1,10 @@
 // You need to specify below info
-const NEO_SCAN_URL = "http://localhost:4000/api/main_net";
+const NEO_SCAN_URL = "https://neopriv-47098-test.morpheuslabs.io/api/main_net";
 const CONTRACT_ADDRESS = 'AdYrj6yhqL8EWPKmK5hgcJydthchFTpGsf';
 const CONTRACT_SCRIPTHASH = 'b6730fd741b632401f89020409c6c0415d97dcee';
 const AMOUNT_OF_NEO_TO_BUY_ONE_VOUCHER = 0.1;
-const PRIV_RPC_NODE = "http://127.0.0.1:30333";
+const PRIV_RPC_NODE = "https://neopriv-33362-test.morpheuslabs.io";
+const additionalInvocationGas = 0;
 
 // elements
 const privateKeyInputEle = document.getElementById('priv_key');
@@ -22,8 +23,7 @@ const diamondsMinusEle = document.getElementById('diamonds_minus');
 const diamondsPlusEle = document.getElementById('diamonds_plus');
 const neoToCostEle = document.getElementById('neo_to_cost');
 const buyDiamondButtonEle = document.getElementById('buy_diamonds_button');
-
-
+var ownedItems = void 0;
 
 // add private net config
 const config = {
@@ -73,7 +73,7 @@ function initWithPrivKey(privKey) {
         });
 
         invokeScriptReadOnly('balanceOf', checkVoucherBalanceCallback);
-        invokeScriptReadOnly('checkItem', checkItemCallback);
+        invokeScriptReadOnly('checkCat', checkItemCallback);
     } catch(e){
         console.log(e);
     }
@@ -105,11 +105,14 @@ function buyDiamondPopup(event) {
 }
 
 function checkVoucherBalanceCallback(res) {
+    console.log(res);
+    if(res.result.stack.length == 0) return;
     const voucherAmount = hexToBytes(res.result.stack[0].value);
     updateVoucherDisplay(voucherAmount);
 }
 
 function checkItemCallback(res) {
+    if(res.result.stack.length == 0) return;
     const items = reformCheckItemResult2(res.result.stack[0].value);
     ownedItems = items;
     renderItemsContainer(items, false);
@@ -158,7 +161,7 @@ document.getElementById('cancel_buy').onclick = function(event) {
 }
 
 function _buyItem(itemName, price) {
-    const apiProvider = new Neon.api.neoscan.instance('PrivateNet');
+    // const apiProvider = new Neon.api.neoscan.instance('PrivateNet');
     const param_address = Neon.sc.ContractParam.byteArray(
           loginAccount.address,
           "address"
@@ -169,7 +172,7 @@ function _buyItem(itemName, price) {
 
     const props = {
         scriptHash: CONTRACT_SCRIPTHASH,
-        operation: "buyItem",
+        operation: "buyCat",
         args: [param_address, param_itemName, param_price]
     };
 
@@ -178,9 +181,10 @@ function _buyItem(itemName, price) {
     const script = Neon.default.create.script(props);
     const config = {
         api: privateNetNeoscan,
-        // url: PRIV_RPC_NODE,
+        url: PRIV_RPC_NODE,
         account: loginAccount,
-        script: script
+        script: script,
+        gas: additionalInvocationGas
     };
 
     Neon.default.doInvoke(config).then(config => {
@@ -213,6 +217,7 @@ function reformCheckCatResult(responseString) {
 function reformCheckItemResult2(responseString) {
     let items = [];
     let result = hexToString(responseString);
+    console.log("reformCheckItemResult2", result);
     if(result!=""){
         items = result.slice("neo");
     }
@@ -328,8 +333,6 @@ buyDiamondButtonEle.onclick = function(event) {
         return ;
     }
 
-    const apiProvider = new Neon.api.neoscan.instance('PrivateNet');
-    
     const intent = Neon.api.makeIntent({NEO:neoAmount}, CONTRACT_ADDRESS);
     const props = {
         scriptHash: CONTRACT_SCRIPTHASH,
@@ -339,6 +342,7 @@ buyDiamondButtonEle.onclick = function(event) {
     const script = Neon.default.create.script(props);
     const config = {
         api: privateNetNeoscan,
+        url: PRIV_RPC_NODE,
         account: loginAccount,
         intents: intent,
         script: script

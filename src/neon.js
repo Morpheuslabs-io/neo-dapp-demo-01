@@ -34,17 +34,25 @@ const buyDiamondButtonEle = document.getElementById('buy_diamonds_button');
 
 
 // add private net config
+const protocol = new Neon.rpc.Protocol({ 
+    magic: 23,
+    SeedList: [PRIV_RPC_NODE]
+});
+
 const config = {
     name: "PrivateNet",
-    url: PRIV_RPC_NODE,
+    protocol: protocol,
     extra: {
+        neoDB: PRIV_RPC_NODE,
         neoscan: NEO_SCAN_URL
     }
 };
 
-Neon.default.add.network(new Neon.rpc.Network(config));
+
+Neon.default.add.network(new Neon.rpc.Network(config), true);
 const privateNetNeoscan = new Neon.api.neoscan.instance("PrivateNet");
 Neon.settings.httpsOnly = true;
+Neon.default.create.rpcClient(PRIV_RPC_NODE);
 
 let loginAccount;
 checkStoredPrivKey();
@@ -196,7 +204,7 @@ function _buyCat(petName, price) {
     const script = Neon.default.create.script(props);
     const config = {
         api: privateNetNeoscan,
-        //url: PRIV_RPC_NODE,
+        url: PRIV_RPC_NODE,
         account: loginAccount,
         script: script
     };

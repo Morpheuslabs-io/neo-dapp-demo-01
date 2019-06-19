@@ -51,7 +51,7 @@ It meant we connected to private net, wait little bit for neo-python node to syn
 ```
 Wallet need to have NEO and GAS to able deploy contract. Next we start to compile and deploy NEP contract to private network.
 
-## Deploy contract on private net
+## Compile & Deploy contract on private net
 ---------------------------------
 
 1. To build contract use command `neo> sc build {path to python file}` example:
