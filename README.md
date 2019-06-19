@@ -12,6 +12,8 @@ If you are not familiar with the ML BPaaS yet, you may refer to "https://docs.mo
 
 If you want to study more about Neo blockchain, you may refer to https://docs.neo.org/en-us/index.html.
 
+The detailed instructions are provided below:
+
 ## Setup Env
 ------------------------------------------------------------------------
 1. Create a Neo private network on "Blockchain Ops"
@@ -149,8 +151,8 @@ Creating smart contract....
     "script": "011ac56b6a00527ac46a51527ac4586a52527ac4074e4744205045546a53527ac4034e50546a54527ac46a00c30b746f74616c537570706c79876406006c7566616a00c3046e616d65876409006a53c36c7566616a00c30673796d626f6c8764...
 ```
 
-## Config Front End dApp
----------------------------------
+## Config DApp Front End
+------------------------
 1. Get the address of of the smart contract 
 
 `neo> show contract {contract script hash}`
