@@ -1,0 +1,24 @@
+{
+  "name": "neo-dapp-demo-01",
+  "version": "1.0.0",
+  "description": "This is a repository for a petshop Dapp demo which is running on NEO blockchain. The project itself does not contain any business purpose and is only used for learning. The project is utilizing following things :",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://sangduongvan@github.com/Morpheuslabs-io/neo-dapp-demo-01.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Morpheuslabs-io/neo-dapp-demo-01/issues"
+  },
+  "homepage": "https://github.com/Morpheuslabs-io/neo-dapp-demo-01#readme"
+}
