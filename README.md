@@ -1,30 +1,58 @@
 # An NEO dApp demo
 
-This is a repository for a petshop Dapp demo which is running on NEO blockchain. The project itself does not contain any business purpose and is only used for learning. The project is utilizing following things :
+This is a petshop Dapp demo running on NEO blockchain. The project itself does not contain any business purpose and is only used for learning.
+
+You will learn how to use the Morpheus Labs Blockchain Platform as a Service (ML BPaaS) for developing, deploying and testing a Neo DApp.
+
+If you are not familiar with the ML BPaaS yet, you may refer to "https://docs.morpheuslabs.io/docs/overview" understand the basic concept and the operations required:
+
+- create a new Neo private network in "Blockchain Ops - Neo" (or use existing)
+- download apps using Application Library
+- Manage workspace in CDE
+
+If you want to study more anout Neo blockchain, you may refer to https://docs.neo.org/en-us/index.html.
 
 ## Setup Env
----------------------------------
-1. Create private net on blockchain ops
-2. Create NEO stack workspace
-3. Open NEO stack workspace
-4. Get code from github `git clone https://github.com/Morpheuslabs-io/neo-dapp-demo-01`
-5. Next we need to config `neo-python` wallet to point to private net 
-Open information tab of blockchain ops and get two links:
-- `Internal RPC URL: http://bops-t.morpheuslabs.io:33362 (example)`
-- `Internal P2P URL: http://bops-t.morpheuslabs.io:21660 (example)`
-6. Using editor like vim open and change file: `/home/user/.local/lib/python3.6/site-packages/neo/data/protocol.privnet.json`
-Update 2 parameters SeedList and RPCList (example): 
+------------------------------------------------------------------------
+1. Create a Neo private network on "Blockchain Ops"
+2. Download "Try Neo Python Smart Contract" from Application Library into My Repository
+3. Create a new workspace using the newly downloaded application in My Repository
+4. Start and open the newly created workspace in CDE
+5. Connect neo-python client in CDE to the private network
+
+In the terminal, use the command "np-config {internal P2P URL} {internal RPC URL}" to connect neo-python to the private network
+
+For example:
+
+    `np-config http://bops-t.morpheuslabs.io:21660 http://bops-t.morpheuslabs.io:33362`
+
+Please note that if you restart the workspace, you have to run the command again. Or if you are using a new private blockchain, then you have to run the command with the internal P2P URL and the RPC URL of the new private network.
+
+You can get the internal P2P URL and internal RPC URL from the information tab of of the private netowork in Blockchain Ops as seen in the example below:
+
+- `Internal RPC URL: http://bops-t.morpheuslabs.io:33362`
+- `Internal P2P URL: http://bops-t.morpheuslabs.io:21660`
+
+For information, the command above will update "SeedList" and "RPCList" in the file
+
+`/home/user/.local/lib/python3.6/site-packages/neo/data/protocol.privnet.json`
+
+For example:
+
 ```
 "SeedList": [
-        "bops-t.morpheuslabs.io:21660" //using Internal P2P URL without http
+    "bops-t.morpheuslabs.io:21660" //using Internal P2P URL without http
 ],
 "RPCList": [
     "http://bops-t.morpheuslabs.io:33362" //using Internal RPC URL with full link
 ]
 ```
 
-7. Open terminal and enter command `np-prompt -p -v` to connnect to private net
-You should get something like this:
+6. Connect to the private network
+
+In the terminal,  enter command `np-prompt -p` to connnect to the private network
+
+You should see something like this:
 
 ```
 Privatenet useragent '/Neo:2.10.1/', nonce: 977855951
@@ -36,12 +64,41 @@ NEO cli. Type 'help' to get started
 neo>
 ```
 
-It meant we connected to private net, wait little bit for neo-python node to sync, you can check syncing status by using command `show state`.
+It means that we have connected to the private network. Wait for a while for the neo-python client in the terminal to sync the blocks from the private network. You can check synching status by using the command 
 
-8. Enter `neo> wallet create ./mywallet` and fill in password to create new wallet. Or open wallet if you already have wallet `neo> wallet open {path to wallet file}`
-9. Import new address to wallet `neo> wallet import wif KxDgvEKzgSBPPfuVfw67oPQBSjidEiqTHURKSDL1R7yGaGYAeYnr`
-10. Rebuild wallet after import `neo> wallet rebuild`
-11. Check NEO and GAS in wallet `neo> wallet` focus to check `percent_synced` and `synced_balances`
+`show state`
+
+You will see some info like this showing the status of syncing. In the example below, 100 blocks have been synched from the private network to the neo-python client node.
+```
+neo> show state
+Progress: 100 / 4588
+Block-cache length 1
+Blocks since program start 100
+Time elapsed 0.43487291666666666 mins
+Blocks per min 229.9522370041056
+TPS: 4.100814893239884
+```
+
+7. Create a new wallet or open an existing wallet
+
+Enter `neo> wallet create ./mywallet` and fill in a password to create a new wallet. Or open an existing wallet `neo> wallet open {path to wallet file}`
+
+8. Import the default account of the private network to the wallet 
+
+`neo> wallet import wif KxDgvEKzgSBPPfuVfw67oPQBSjidEiqTHURKSDL1R7yGaGYAeYnr`
+
+This default account has NEO and GAS tokens for you to perform various transactions on the private network.
+
+9. Rebuild the wallet after import 
+
+`neo> wallet rebuild`
+
+10. Check NEO and GAS in the wallet 
+
+`neo> wallet` 
+
+Check `percent_synced` and `synced_balances` to confirm there are NEO and GAS tokens in the wallet.
+
 ```
     "percent_synced": 100,
     "synced_balances": [
@@ -49,7 +106,9 @@ It meant we connected to private net, wait little bit for neo-python node to syn
         "[NEOGas]: 30525.98755 "
     ],
 ```
-Wallet need to have NEO and GAS to able deploy contract. Next we start to compile and deploy NEP contract to private network.
+The wallet needs to have NEO and GAS to be able to deploy the smart contract.
+
+Next, we will compile the smart contract, deploy and test the smart contract using the private network.
 
 ## Compile & Deploy contract on private net
 ---------------------------------
