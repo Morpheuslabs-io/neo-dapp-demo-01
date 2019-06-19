@@ -213,3 +213,4 @@ const AMOUNT_OF_NEO_TO_BUY_ONE_VOUCHER = 0.1;
 `node index.js`
 
 
+Refer to https://github.com/Morpheuslabs-io/neo-dapp-demo-01/blob/master/dapp.md for the detailed functions of the DApp.
