@@ -10,7 +10,7 @@ If you are not familiar with the ML BPaaS yet, you may refer to "https://docs.mo
 - download apps using Application Library
 - Manage workspace in CDE
 
-If you want to study more anout Neo blockchain, you may refer to https://docs.neo.org/en-us/index.html.
+If you want to study more about Neo blockchain, you may refer to https://docs.neo.org/en-us/index.html.
 
 ## Setup Env
 ------------------------------------------------------------------------
