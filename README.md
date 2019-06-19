@@ -154,7 +154,10 @@ Creating smart contract....
 1. Get the address of of the smart contract 
 
 `neo> show contract {contract script hash}`
-Example: `neo> show contract 0xb6730fd741b632401f89020409c6c0415d97dcee`
+
+Example output: 
+
+`neo> show contract 0xb6730fd741b632401f89020409c6c0415d97dcee`
 
 Example output: 
 ```
