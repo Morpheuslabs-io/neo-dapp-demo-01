@@ -113,13 +113,27 @@ Next, we will compile the smart contract, deploy and test the smart contract usi
 ## Compile & Deploy contract on private net
 ---------------------------------
 
-1. To build contract use command `neo> sc build {path to python file}` example:
+1. Compile and build the smart contract
+
+use the command "neo> sc build {path to python file}", for example:
+
 `neo> sc build /projects/neo-dapp-demo-01/smart-contract/NEP.py`
-2. To deploy contract use command `neo>sc deploy {path to .avm file} True False False 0701 05 --fee={fee}`
-And Enter Contract Information detail to deploy.
-example: `neo> sc deploy /projects/neo-dapp-demo-01/smart-contract/NEP.avm True False False 0701 05 --fee=550`
-3. When finish to deploy wait little and view detail contract to get contract address to config on FrontEnd
-Example:
+
+2. Deploy the smart contract
+
+Enter the command  `neo>sc deploy {path to .avm file} True False False 0701 05 --fee={fee}`
+Then enter the details of the contract information and provide the password of the wallet to complete the deployment.
+
+The example of the command:
+
+`neo> sc deploy /projects/neo-dapp-demo-01/smart-contract/NEP.avm True False False 0701 05 --fee=550`
+
+3. Get the script hash of the smart contract
+
+Wait for the deployment to finish and view the detail of the smart contract to get the script hash of the contract address which is usually used by the client application to involke or call the smart contract functions.
+
+Example of the details of the smart contract:
+
 ```
 Creating smart contract....
                  Name: PETToken
