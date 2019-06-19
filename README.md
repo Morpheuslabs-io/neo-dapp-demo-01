@@ -110,8 +110,8 @@ The wallet needs to have NEO and GAS to be able to deploy the smart contract.
 
 Next, we will compile the smart contract, deploy and test the smart contract using the private network.
 
-## Compile & Deploy contract on private net
----------------------------------
+## Compile & Deploy the smart contract
+--------------------------------------
 
 1. Compile and build the smart contract
 
@@ -151,9 +151,12 @@ Creating smart contract....
 
 ## Config Front End dApp
 ---------------------------------
-1. Get address of contract `neo> show contract {contract script hash}`
+1. Get the address of of the smart contract 
+
+`neo> show contract {contract script hash}`
 Example: `neo> show contract 0xb6730fd741b632401f89020409c6c0415d97dcee`
-Output: 
+
+Example output: 
 ```
 {
     "version": 0,
@@ -184,8 +187,10 @@ Output:
 }
 `
 ```
-2. Update config file, open neon.js file in src folder and update contract address, contract hash, scan url, RPC url
-Example: 
+2. Update config file
+
+Open neon.js file in "src" folder and update the smart contract address, the contract hash, neo scan url, RPC url as shown in the example below:
+
 ```javascript
 const NEO_SCAN_URL = "https://neoscan-testnet.io/api/main_net";
 const PRIV_RPC_NODE = "http://192.168.99.100:30333";
@@ -194,7 +199,12 @@ const CONTRACT_SCRIPTHASH = 'b6730fd741b632401f89020409c6c0415d97dcee';
 const AMOUNT_OF_NEO_TO_BUY_ONE_VOUCHER = 0.1;
 ```
 
-3. Run `npm install` to install client node modules
-4. Run `node index.js` to start dev server
+3. Install client node.js modules
+
+`npm install`
+
+4. Launch the DApp
+
+`node index.js`
 
 
