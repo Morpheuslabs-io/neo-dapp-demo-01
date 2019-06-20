@@ -216,6 +216,7 @@ in the project folder "neo-dapp-demo-01"
 
 `node index.js`
 
+You can see the basic steps to run the dapp here https://github.com/Morpheuslabs-io/neo-dapp-demo-01/blob/master/demo.md
 
 Refer to https://github.com/Morpheuslabs-io/neo-dapp-demo-01/blob/master/dapp.md for the detailed functions of the DApp.
 
