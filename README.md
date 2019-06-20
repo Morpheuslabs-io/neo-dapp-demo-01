@@ -214,3 +214,13 @@ const AMOUNT_OF_NEO_TO_BUY_ONE_VOUCHER = 0.1;
 
 
 Refer to https://github.com/Morpheuslabs-io/neo-dapp-demo-01/blob/master/dapp.md for the detailed functions of the DApp.
+
+## Troubleshooting
+
+You may encounter errors in the steps about.
+
+Some tips to help resolve the issues:
+
+- Delete and create a new Neo privte network, if you encounter insuffient GAS for your smart contract deployment. Then you may need to do all the steps again
+- Stop and restart the workspace, if encountered unexpected errors when executing the commands
+
