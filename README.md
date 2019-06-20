@@ -206,9 +206,13 @@ const AMOUNT_OF_NEO_TO_BUY_ONE_VOUCHER = 0.1;
 
 3. Install client node.js modules
 
+in the project folder "neo-dapp-demo-01"
+
 `npm install`
 
 4. Launch the DApp
+
+in the project folder "neo-dapp-demo-01"
 
 `node index.js`
 
