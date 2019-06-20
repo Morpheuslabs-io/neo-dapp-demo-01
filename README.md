@@ -197,8 +197,8 @@ Example output:
 Open neon.js file in "src" folder and update the smart contract address, the contract hash, neo scan url of the private netowrk, the internal RPC url of the private network as shown in the example below:
 
 ```javascript
-const NEO_SCAN_URL = "https://neo01-43347-test.morpheuslabs.io/api/main_net";
-const PRIV_RPC_NODE = "https://neo01-39636-test.morpheuslabs.io";
+const NEO_SCAN_URL = "https://neo01-43347-test.morpheuslabs.io/api/main_net";  // {neo_scan_url}/api/main_net
+const PRIV_RPC_NODE = "https://neo01-39636-test.morpheuslabs.io";  // external RPC URL of the private network
 const CONTRACT_ADDRESS = 'AdYrj6yhqL8EWPKmK5hgcJydthchFTpGsf';
 const CONTRACT_SCRIPTHASH = 'b6730fd741b632401f89020409c6c0415d97dcee';
 const AMOUNT_OF_NEO_TO_BUY_ONE_VOUCHER = 0.1;
