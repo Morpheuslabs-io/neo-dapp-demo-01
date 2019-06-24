@@ -1,11 +1,12 @@
 # dApp Demo
 
-This is a simple guide showing how to play the demo dapp.
+This is a simple guide showing how to play the demo dapp (after the dapp has been successfully deployed).
 
 1. Get your private key
 
-Firstly, we need to login to app by using your private key
-To get your private key go to wallet and run command `neo> wallet export wif {address}`
+Firstly, we need to login to the app by using your private key.
+
+To get your private key, go to the wallet and run command `neo> wallet export wif {address}`
 Example: 
 ```
 neo> wallet export wif AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y
@@ -13,20 +14,22 @@ neo> wallet export wif AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y
 WIF: KxDgvEKzgSBPPfuVfw67oPQBSjidEiqTHURKSDL1R7yGaGYAeYnr
 neo>
 ```
-We get WIF = KxDgvEKzgSBPPfuVfw67oPQBSjidEiqTHURKSDL1R7yGaGYAeYnr to login to dApp
+We get WIF = KxDgvEKzgSBPPfuVfw67oPQBSjidEiqTHURKSDL1R7yGaGYAeYnr to login to the dApp.
+
+Or you can get the private key from information of the private network in Blockchain Ops.
 
 2. Login
 
-To Login to dApp, click on Login button and fill in WIF (private key):
+Fill in WIF (private key) and then click on Login button and :
 <img src="login.png" alt="NEO-Tutorial"/>
 
-After login, you will see NEO and Diamond you have in your wallet, if you want to buy some diamonds click on (+) icon to buy.
+After login, you will see the amount of NEO and Diamond you have in your wallet.  If you want to buy some diamonds click on (+) icon to buy.
 <img src="home.png" alt="NEO-Tutorial"/>
 
 Buy more diamond
 <img src="buy_diamon.png" alt="NEO-Tutorial"/>
 
-After click buy you can see new invocation transaction on blockchain explorer or in neo-python wallet logs
+After clicking Buy, you can see new invocation transaction on blockchain explorer or in neo-python wallet logs ("np-prompt -p" -v, then "wallet open ./mywallet")
 <img src="transaction_logs.png" alt="NEO-Tutorial"/>
 
 3. Buy items
